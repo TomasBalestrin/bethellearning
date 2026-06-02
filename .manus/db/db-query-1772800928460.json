@@ -1,0 +1,280 @@
+{
+  "query": "SELECT c.title as course, l.id, l.title as lesson\nFROM lessons l\nJOIN modules m ON l.module_id = m.id\nJOIN courses c ON m.course_id = c.id\nORDER BY c.id, m.id, l.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT c.title as course, l.id, l.title as lesson\nFROM lessons l\nJOIN modules m ON l.module_id = m.id\nJOIN courses c ON m.course_id = c.id\nORDER BY c.id, m.id, l.id;",
+  "rows": [
+    {
+      "course": "Trilha Iniciante",
+      "id": "1",
+      "lesson": "O que é Programação?"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "2",
+      "lesson": "Variáveis e Tipos de Dados"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "3",
+      "lesson": "Estruturas de Controle"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "4",
+      "lesson": "Introdução ao Git"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "5",
+      "lesson": "Branches e Merge"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "6",
+      "lesson": "GitHub e Colaboração"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "7",
+      "lesson": "Estrutura HTML"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "8",
+      "lesson": "Estilização com CSS"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "9",
+      "lesson": "Flexbox e Grid"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "10",
+      "lesson": "Arrow Functions e Destructuring"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "11",
+      "lesson": "Promises e Async/Await"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "12",
+      "lesson": "Manipulação do DOM"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "13",
+      "lesson": "Componentes e Props"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "14",
+      "lesson": "Hooks: useState e useEffect"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "15",
+      "lesson": "Context API"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "16",
+      "lesson": "Introdução a Bancos de Dados"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "17",
+      "lesson": "Queries SQL Básicas"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "18",
+      "lesson": "JOINs e Relacionamentos"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "19",
+      "lesson": "Princípios SOLID"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "20",
+      "lesson": "Design Patterns Criacionais"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "21",
+      "lesson": "Design Patterns Estruturais"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "22",
+      "lesson": "Introdução ao Docker"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "23",
+      "lesson": "Dockerfile e Docker Compose"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "24",
+      "lesson": "Deploy com Docker"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "25",
+      "lesson": "Integração Contínua"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "26",
+      "lesson": "Deploy Contínuo"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "id": "27",
+      "lesson": "Monitoramento e Logs"
+    },
+    {
+      "course": "Mobile Development",
+      "id": "120001",
+      "lesson": "Diferenças Web vs Mobile"
+    },
+    {
+      "course": "Mobile Development",
+      "id": "120002",
+      "lesson": "Escolhendo o Framework Certo"
+    },
+    {
+      "course": "Mobile Development",
+      "id": "120003",
+      "lesson": "Setup do Ambiente de Desenvolvimento"
+    },
+    {
+      "course": "Mobile Development",
+      "id": "120004",
+      "lesson": "React Native Básico"
+    },
+    {
+      "course": "Mobile Development",
+      "id": "120005",
+      "lesson": "Navegação em React Native"
+    },
+    {
+      "course": "Mobile Development",
+      "id": "120006",
+      "lesson": "Hooks e State Management"
+    },
+    {
+      "course": "Mobile Development",
+      "id": "120007",
+      "lesson": "Dart Fundamentos"
+    },
+    {
+      "course": "Mobile Development",
+      "id": "120008",
+      "lesson": "Widgets e UI em Flutter"
+    },
+    {
+      "course": "Mobile Development",
+      "id": "120009",
+      "lesson": "State Management em Flutter"
+    },
+    {
+      "course": "Cloud & DevOps Avançado",
+      "id": "120010",
+      "lesson": "Modelos de Cloud"
+    },
+    {
+      "course": "Cloud & DevOps Avançado",
+      "id": "120011",
+      "lesson": "Provedores Cloud Principais"
+    },
+    {
+      "course": "Cloud & DevOps Avançado",
+      "id": "120012",
+      "lesson": "Vantagens e Desafios da Cloud"
+    },
+    {
+      "course": "Cloud & DevOps Avançado",
+      "id": "120013",
+      "lesson": "Docker Fundamentos"
+    },
+    {
+      "course": "Cloud & DevOps Avançado",
+      "id": "120014",
+      "lesson": "Orquestração com Kubernetes"
+    },
+    {
+      "course": "Cloud & DevOps Avançado",
+      "id": "120015",
+      "lesson": "CI/CD Pipelines"
+    },
+    {
+      "course": "Cloud & DevOps Avançado",
+      "id": "120016",
+      "lesson": "Terraform Fundamentos"
+    },
+    {
+      "course": "Cloud & DevOps Avançado",
+      "id": "120017",
+      "lesson": "CloudFormation vs Terraform"
+    },
+    {
+      "course": "Cloud & DevOps Avançado",
+      "id": "120018",
+      "lesson": "Monitoramento e Logging"
+    },
+    {
+      "course": "Segurança & Compliance",
+      "id": "120019",
+      "lesson": "OWASP Top 10"
+    },
+    {
+      "course": "Segurança & Compliance",
+      "id": "120020",
+      "lesson": "Princípios de Segurança"
+    },
+    {
+      "course": "Segurança & Compliance",
+      "id": "120021",
+      "lesson": "Defesa em Profundidade"
+    },
+    {
+      "course": "Segurança & Compliance",
+      "id": "120022",
+      "lesson": "Criptografia Simétrica"
+    },
+    {
+      "course": "Segurança & Compliance",
+      "id": "120023",
+      "lesson": "Criptografia Assimétrica"
+    },
+    {
+      "course": "Segurança & Compliance",
+      "id": "120024",
+      "lesson": "Hashing e Funções Hash"
+    },
+    {
+      "course": "Segurança & Compliance",
+      "id": "120025",
+      "lesson": "OAuth 2.0"
+    },
+    {
+      "course": "Segurança & Compliance",
+      "id": "120026",
+      "lesson": "JWT (JSON Web Tokens)"
+    },
+    {
+      "course": "Segurança & Compliance",
+      "id": "120027",
+      "lesson": "SAML vs OAuth vs OpenID Connect"
+    }
+  ],
+  "messages": [],
+  "stdout": "course\tid\tlesson\nTrilha Iniciante\t1\tO que é Programação?\nTrilha Iniciante\t2\tVariáveis e Tipos de Dados\nTrilha Iniciante\t3\tEstruturas de Controle\nTrilha Iniciante\t4\tIntrodução ao Git\nTrilha Iniciante\t5\tBranches e Merge\nTrilha Iniciante\t6\tGitHub e Colaboração\nTrilha Iniciante\t7\tEstrutura HTML\nTrilha Iniciante\t8\tEstilização com CSS\nTrilha Iniciante\t9\tFlexbox e Grid\nTrilha Iniciante\t10\tArrow Functions e Destructuring\nTrilha Iniciante\t11\tPromises e Async/Await\nTrilha Iniciante\t12\tManipulação do DOM\nTrilha Iniciante\t13\tComponentes e Props\nTrilha Iniciante\t14\tHooks: useState e useEffect\nTrilha Iniciante\t15\tContext API\nTrilha Iniciante\t16\tIntrodução a Bancos de Dados\nTrilha Iniciante\t17\tQueries SQL Básicas\nTrilha Iniciante\t18\tJOINs e Relacionamentos\nTrilha Iniciante\t19\tPrincípios SOLID\nTrilha Iniciante\t20\tDesign Patterns Criacionais\nTrilha Iniciante\t21\tDesign Patterns Estruturais\nTrilha Iniciante\t22\tIntrodução ao Docker\nTrilha Iniciante\t23\tDockerfile e Docker Compose\nTrilha Iniciante\t24\tDeploy com Docker\nTrilha Iniciante\t25\tIntegração Contínua\nTrilha Iniciante\t26\tDeploy Contínuo\nTrilha Iniciante\t27\tMonitoramento e Logs\nMobile Development\t120001\tDiferenças Web vs Mobile\nMobile Development\t120002\tEscolhendo o Framework Certo\nMobile Development\t120003\tSetup do Ambiente de Desenvolvimento\nMobile Development\t120004\tReact Native Básico\nMobile Development\t120005\tNavegação em React Native\nMobile Development\t120006\tHooks e State Management\nMobile Development\t120007\tDart Fundamentos\nMobile Development\t120008\tWidgets e UI em Flutter\nMobile Development\t120009\tState Management em Flutter\nCloud & DevOps Avançado\t120010\tModelos de Cloud\nCloud & DevOps Avançado\t120011\tProvedores Cloud Principais\nCloud & DevOps Avançado\t120012\tVantagens e Desafios da Cloud\nCloud & DevOps Avançado\t120013\tDocker Fundamentos\nCloud & DevOps Avançado\t120014\tOrquestração com Kubernetes\nCloud & DevOps Avançado\t120015\tCI/CD Pipelines\nCloud & DevOps Avançado\t120016\tTerraform Fundamentos\nCloud & DevOps Avançado\t120017\tCloudFormation vs Terraform\nCloud & DevOps Avançado\t120018\tMonitoramento e Logging\nSegurança & Compliance\t120019\tOWASP Top 10\nSegurança & Compliance\t120020\tPrincípios de Segurança\nSegurança & Compliance\t120021\tDefesa em Profundidade\nSegurança & Compliance\t120022\tCriptografia Simétrica\nSegurança & Compliance\t120023\tCriptografia Assimétrica\nSegurança & Compliance\t120024\tHashing e Funções Hash\nSegurança & Compliance\t120025\tOAuth 2.0\nSegurança & Compliance\t120026\tJWT (JSON Web Tokens)\nSegurança & Compliance\t120027\tSAML vs OAuth vs OpenID Connect\n",
+  "stderr": "",
+  "execution_time_ms": 363
+}

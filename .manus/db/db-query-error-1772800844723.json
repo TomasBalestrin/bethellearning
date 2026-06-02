@@ -1,0 +1,8 @@
+{
+  "query": "SELECT DISTINCT c.id, c.title, COUNT(DISTINCT m.id) as modulos, COUNT(DISTINCT l.id) as aulas\nFROM courses c\nLEFT JOIN modules m ON c.id = m.course_id\nLEFT JOIN lessons l ON m.id = l.module_id\nGROUP BY c.id, c.title\nORDER BY c.created_at;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT DISTINCT c.id, c.title, COUNT(DISTINCT m.id) as modulos, COUNT(DISTINCT l.id) as aulas\nFROM courses c\nLEFT JOIN modules m ON c.id = m.course_id\nLEFT JOIN lessons l ON m.id = l.module_id\nGROUP BY c.id, c.title\nORDER BY c.created_at;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 3065 (HY000) at line 1: Expression #1 of ORDER BY clause is not in SELECT list, references column 'ldltnu3ggjm84uqbzlmz7c.courses.created_at' which is not in SELECT list; this is incompatible with DISTINCT"
+  ]
+}

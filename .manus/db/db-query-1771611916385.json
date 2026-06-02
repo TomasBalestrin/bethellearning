@@ -1,0 +1,22 @@
+{
+  "query": "SELECT id, title FROM lessons WHERE id BETWEEN 13 AND 15 ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT id, title FROM lessons WHERE id BETWEEN 13 AND 15 ORDER BY id;",
+  "rows": [
+    {
+      "id": "13",
+      "title": "Componentes e Props"
+    },
+    {
+      "id": "14",
+      "title": "Hooks: useState e useEffect"
+    },
+    {
+      "id": "15",
+      "title": "Context API"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\n13\tComponentes e Props\n14\tHooks: useState e useEffect\n15\tContext API\n",
+  "stderr": "",
+  "execution_time_ms": 361
+}

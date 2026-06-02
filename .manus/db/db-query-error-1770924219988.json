@@ -1,0 +1,8 @@
+{
+  "query": "SELECT l.id, l.title, m.title as module_title, c.title as course_title \nFROM lessons l \nJOIN modules m ON l.moduleId = m.id \nJOIN courses c ON m.courseId = c.id \nWHERE c.id = 2 \nORDER BY m.order_index, l.order_index;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT l.id, l.title, m.title as module_title, c.title as course_title \nFROM lessons l \nJOIN modules m ON l.moduleId = m.id \nJOIN courses c ON m.courseId = c.id \nWHERE c.id = 2 \nORDER BY m.order_index, l.order_index;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'l.moduleid' in 'on clause'"
+  ]
+}

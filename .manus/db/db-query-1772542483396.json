@@ -1,0 +1,50 @@
+{
+  "query": "SELECT \n  c.title as trilha,\n  COUNT(DISTINCT l.id) as total_aulas,\n  SUM(CASE WHEN l.video_url IS NOT NULL THEN 1 ELSE 0 END) as aulas_com_video,\n  SUM(CASE WHEN CHAR_LENGTH(COALESCE(l.content, '')) > 2000 THEN 1 ELSE 0 END) as aulas_expandidas_2k,\n  SUM(CASE WHEN CHAR_LENGTH(COALESCE(l.content, '')) > 5000 THEN 1 ELSE 0 END) as aulas_expandidas_5k,\n  ROUND(AVG(CHAR_LENGTH(COALESCE(l.content, '')))) as media_caracteres\nFROM courses c\nLEFT JOIN modules m ON c.id = m.course_id\nLEFT JOIN lessons l ON m.id = l.module_id\nWHERE l.id IS NOT NULL\nGROUP BY c.id, c.title\nORDER BY c.created_at ASC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT \n  c.title as trilha,\n  COUNT(DISTINCT l.id) as total_aulas,\n  SUM(CASE WHEN l.video_url IS NOT NULL THEN 1 ELSE 0 END) as aulas_com_video,\n  SUM(CASE WHEN CHAR_LENGTH(COALESCE(l.content, '')) > 2000 THEN 1 ELSE 0 END) as aulas_expandidas_2k,\n  SUM(CASE WHEN CHAR_LENGTH(COALESCE(l.content, '')) > 5000 THEN 1 ELSE 0 END) as aulas_expandidas_5k,\n  ROUND(AVG(CHAR_LENGTH(COALESCE(l.content, '')))) as media_caracteres\nFROM courses c\nLEFT JOIN modules m ON c.id = m.course_id\nLEFT JOIN lessons l ON m.id = l.module_id\nWHERE l.id IS NOT NULL\nGROUP BY c.id, c.title\nORDER BY c.created_at ASC;",
+  "rows": [
+    {
+      "trilha": "Trilha Iniciante",
+      "total_aulas": "18",
+      "aulas_com_video": "0",
+      "aulas_expandidas_2k": "18",
+      "aulas_expandidas_5k": "8",
+      "media_caracteres": "5171"
+    },
+    {
+      "trilha": "Trilha Iniciante",
+      "total_aulas": "9",
+      "aulas_com_video": "0",
+      "aulas_expandidas_2k": "0",
+      "aulas_expandidas_5k": "0",
+      "media_caracteres": "1044"
+    },
+    {
+      "trilha": "Mobile Development",
+      "total_aulas": "9",
+      "aulas_com_video": "9",
+      "aulas_expandidas_2k": "0",
+      "aulas_expandidas_5k": "0",
+      "media_caracteres": "269"
+    },
+    {
+      "trilha": "Cloud & DevOps Avançado",
+      "total_aulas": "9",
+      "aulas_com_video": "9",
+      "aulas_expandidas_2k": "0",
+      "aulas_expandidas_5k": "0",
+      "media_caracteres": "209"
+    },
+    {
+      "trilha": "Segurança & Compliance",
+      "total_aulas": "9",
+      "aulas_com_video": "4",
+      "aulas_expandidas_2k": "0",
+      "aulas_expandidas_5k": "0",
+      "media_caracteres": "230"
+    }
+  ],
+  "messages": [],
+  "stdout": "trilha\ttotal_aulas\taulas_com_video\taulas_expandidas_2k\taulas_expandidas_5k\tmedia_caracteres\nTrilha Iniciante\t18\t0\t18\t8\t5171\nTrilha Iniciante\t9\t0\t0\t0\t1044\nMobile Development\t9\t9\t0\t0\t269\nCloud & DevOps Avançado\t9\t9\t0\t0\t209\nSegurança & Compliance\t9\t4\t0\t0\t230\n",
+  "stderr": "",
+  "execution_time_ms": 375
+}

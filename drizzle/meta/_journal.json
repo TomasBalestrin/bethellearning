@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1770309250102,
+      "tag": "0000_known_sumo",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1770378383099,
+      "tag": "0001_smiling_blue_blade",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1770645988881,
+      "tag": "0002_glossy_wilson_fisk",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1771857343834,
+      "tag": "0003_cool_sphinx",
+      "breakpoints": true
+    }
+  ]
+}

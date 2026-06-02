@@ -1,0 +1,118 @@
+{
+  "query": "SELECT c.id, c.title, COUNT(DISTINCT m.id) as modulos, COUNT(DISTINCT l.id) as aulas\nFROM courses c\nLEFT JOIN modules m ON c.id = m.course_id\nLEFT JOIN lessons l ON m.id = l.module_id\nGROUP BY c.id, c.title;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT c.id, c.title, COUNT(DISTINCT m.id) as modulos, COUNT(DISTINCT l.id) as aulas\nFROM courses c\nLEFT JOIN modules m ON c.id = m.course_id\nLEFT JOIN lessons l ON m.id = l.module_id\nGROUP BY c.id, c.title;",
+  "rows": [
+    {
+      "id": "1",
+      "title": "Trilha Iniciante",
+      "modulos": "6",
+      "aulas": "18"
+    },
+    {
+      "id": "2",
+      "title": "Trilha Iniciante",
+      "modulos": "3",
+      "aulas": "9"
+    },
+    {
+      "id": "120001",
+      "title": "Mobile Development",
+      "modulos": "5",
+      "aulas": "9"
+    },
+    {
+      "id": "120002",
+      "title": "Cloud & DevOps Avançado",
+      "modulos": "3",
+      "aulas": "9"
+    },
+    {
+      "id": "120003",
+      "title": "Segurança & Compliance",
+      "modulos": "3",
+      "aulas": "9"
+    },
+    {
+      "id": "3",
+      "title": "Trilha Intermediária",
+      "modulos": "3",
+      "aulas": "0"
+    },
+    {
+      "id": "30001",
+      "title": "Test Course",
+      "modulos": "1",
+      "aulas": "0"
+    },
+    {
+      "id": "30002",
+      "title": "Test Course",
+      "modulos": "1",
+      "aulas": "0"
+    },
+    {
+      "id": "30003",
+      "title": "Test Course",
+      "modulos": "1",
+      "aulas": "0"
+    },
+    {
+      "id": "30004",
+      "title": "Test Course",
+      "modulos": "1",
+      "aulas": "0"
+    },
+    {
+      "id": "30005",
+      "title": "Test Course",
+      "modulos": "1",
+      "aulas": "0"
+    },
+    {
+      "id": "60001",
+      "title": "Test Course",
+      "modulos": "1",
+      "aulas": "0"
+    },
+    {
+      "id": "60002",
+      "title": "Test Course",
+      "modulos": "1",
+      "aulas": "0"
+    },
+    {
+      "id": "60003",
+      "title": "Test Course",
+      "modulos": "1",
+      "aulas": "0"
+    },
+    {
+      "id": "60004",
+      "title": "Test Course",
+      "modulos": "1",
+      "aulas": "0"
+    },
+    {
+      "id": "90001",
+      "title": "Test Course",
+      "modulos": "1",
+      "aulas": "0"
+    },
+    {
+      "id": "90002",
+      "title": "Test Course",
+      "modulos": "1",
+      "aulas": "0"
+    },
+    {
+      "id": "4",
+      "title": "Trilha Avançada",
+      "modulos": "0",
+      "aulas": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tmodulos\taulas\n1\tTrilha Iniciante\t6\t18\n2\tTrilha Iniciante\t3\t9\n120001\tMobile Development\t5\t9\n120002\tCloud & DevOps Avançado\t3\t9\n120003\tSegurança & Compliance\t3\t9\n3\tTrilha Intermediária\t3\t0\n30001\tTest Course\t1\t0\n30002\tTest Course\t1\t0\n30003\tTest Course\t1\t0\n30004\tTest Course\t1\t0\n30005\tTest Course\t1\t0\n60001\tTest Course\t1\t0\n60002\tTest Course\t1\t0\n60003\tTest Course\t1\t0\n60004\tTest Course\t1\t0\n90001\tTest Course\t1\t0\n90002\tTest Course\t1\t0\n4\tTrilha Avançada\t0\t0\n",
+  "stderr": "",
+  "execution_time_ms": 350
+}

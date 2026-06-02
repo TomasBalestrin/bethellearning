@@ -1,0 +1,60 @@
+{
+  "query": "SELECT * FROM badges LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT * FROM badges LIMIT 5;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Primeira Aula",
+      "description": "Complete sua primeira aula",
+      "icon": "🎓",
+      "requirement_type": "lessons_completed",
+      "requirement_value": "1",
+      "xp_reward": "50",
+      "created_at": "2026-02-18 13:43:07"
+    },
+    {
+      "id": "2",
+      "name": "Iniciante Dedicado",
+      "description": "Complete 10 aulas",
+      "icon": "📚",
+      "requirement_type": "lessons_completed",
+      "requirement_value": "10",
+      "xp_reward": "100",
+      "created_at": "2026-02-18 13:43:07"
+    },
+    {
+      "id": "3",
+      "name": "Estudante Avançado",
+      "description": "Complete 25 aulas",
+      "icon": "🏆",
+      "requirement_type": "lessons_completed",
+      "requirement_value": "25",
+      "xp_reward": "250",
+      "created_at": "2026-02-18 13:43:07"
+    },
+    {
+      "id": "4",
+      "name": "Mestre do Conhecimento",
+      "description": "Complete todas as 27 aulas",
+      "icon": "👑",
+      "requirement_type": "lessons_completed",
+      "requirement_value": "27",
+      "xp_reward": "500",
+      "created_at": "2026-02-18 13:43:07"
+    },
+    {
+      "id": "5",
+      "name": "Primeiros Passos",
+      "description": "Ganhe 100 XP",
+      "icon": "⭐",
+      "requirement_type": "xp_earned",
+      "requirement_value": "100",
+      "xp_reward": "0",
+      "created_at": "2026-02-18 13:43:07"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tdescription\ticon\trequirement_type\trequirement_value\txp_reward\tcreated_at\n1\tPrimeira Aula\tComplete sua primeira aula\t🎓\tlessons_completed\t1\t50\t2026-02-18 13:43:07\n2\tIniciante Dedicado\tComplete 10 aulas\t📚\tlessons_completed\t10\t100\t2026-02-18 13:43:07\n3\tEstudante Avançado\tComplete 25 aulas\t🏆\tlessons_completed\t25\t250\t2026-02-18 13:43:07\n4\tMestre do Conhecimento\tComplete todas as 27 aulas\t👑\tlessons_completed\t27\t500\t2026-02-18 13:43:07\n5\tPrimeiros Passos\tGanhe 100 XP\t⭐\txp_earned\t100\t0\t2026-02-18 13:43:07\n",
+  "stderr": "",
+  "execution_time_ms": 363
+}

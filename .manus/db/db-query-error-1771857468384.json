@@ -1,0 +1,8 @@
+{
+  "query": "INSERT INTO badges (name, description, icon, requirement, requirement_type, requirement_value) VALUES\n('Streak de 7 Dias', 'Complete aulas por 7 dias consecutivos', '🔥', 'Estude por 7 dias seguidos sem faltar', 'streak', 7),\n('Streak de 30 Dias', 'Complete aulas por 30 dias consecutivos', '🔥🔥', 'Estude por 30 dias seguidos sem faltar', 'streak', 30),\n('Streak de 100 Dias', 'Complete aulas por 100 dias consecutivos', '🔥🔥🔥', 'Estude por 100 dias seguidos sem faltar - conquista lendária!', 'streak', 100);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute INSERT INTO badges (name, description, icon, requirement, requirement_type, requirement_value) VALUES\n('Streak de 7 Dias', 'Complete aulas por 7 dias consecutivos', '🔥', 'Estude por 7 dias seguidos sem faltar', 'streak', 7),\n('Streak de 30 Dias', 'Complete aulas por 30 dias consecutivos', '🔥🔥', 'Estude por 30 dias seguidos sem faltar', 'streak', 30),\n('Streak de 100 Dias', 'Complete aulas por 100 dias consecutivos', '🔥🔥🔥', 'Estude por 100 dias seguidos sem faltar - conquista lendária!', 'streak', 100);",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'requirement' in 'field list'"
+  ]
+}

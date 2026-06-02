@@ -1,0 +1,58 @@
+{
+  "query": "SELECT id, title FROM lessons WHERE id BETWEEN 16 AND 27 ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT id, title FROM lessons WHERE id BETWEEN 16 AND 27 ORDER BY id;",
+  "rows": [
+    {
+      "id": "16",
+      "title": "Introdução a Bancos de Dados"
+    },
+    {
+      "id": "17",
+      "title": "Queries SQL Básicas"
+    },
+    {
+      "id": "18",
+      "title": "JOINs e Relacionamentos"
+    },
+    {
+      "id": "19",
+      "title": "Princípios SOLID"
+    },
+    {
+      "id": "20",
+      "title": "Design Patterns Criacionais"
+    },
+    {
+      "id": "21",
+      "title": "Design Patterns Estruturais"
+    },
+    {
+      "id": "22",
+      "title": "Introdução ao Docker"
+    },
+    {
+      "id": "23",
+      "title": "Dockerfile e Docker Compose"
+    },
+    {
+      "id": "24",
+      "title": "Deploy com Docker"
+    },
+    {
+      "id": "25",
+      "title": "Integração Contínua"
+    },
+    {
+      "id": "26",
+      "title": "Deploy Contínuo"
+    },
+    {
+      "id": "27",
+      "title": "Monitoramento e Logs"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\n16\tIntrodução a Bancos de Dados\n17\tQueries SQL Básicas\n18\tJOINs e Relacionamentos\n19\tPrincípios SOLID\n20\tDesign Patterns Criacionais\n21\tDesign Patterns Estruturais\n22\tIntrodução ao Docker\n23\tDockerfile e Docker Compose\n24\tDeploy com Docker\n25\tIntegração Contínua\n26\tDeploy Contínuo\n27\tMonitoramento e Logs\n",
+  "stderr": "",
+  "execution_time_ms": 349
+}

@@ -1,0 +1,34 @@
+{
+  "query": "SELECT c.id, c.title, COUNT(m.id) as total_modules, COUNT(l.id) as total_lessons\nFROM courses c\nLEFT JOIN modules m ON c.id = m.course_id\nLEFT JOIN lessons l ON m.id = l.module_id\nWHERE c.title IN ('Trilha Iniciante', 'Trilha Intermediária', 'Trilha Avançada')\nGROUP BY c.id, c.title;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT c.id, c.title, COUNT(m.id) as total_modules, COUNT(l.id) as total_lessons\nFROM courses c\nLEFT JOIN modules m ON c.id = m.course_id\nLEFT JOIN lessons l ON m.id = l.module_id\nWHERE c.title IN ('Trilha Iniciante', 'Trilha Intermediária', 'Trilha Avançada')\nGROUP BY c.id, c.title;",
+  "rows": [
+    {
+      "id": "1",
+      "title": "Trilha Iniciante",
+      "total_modules": "18",
+      "total_lessons": "18"
+    },
+    {
+      "id": "3",
+      "title": "Trilha Intermediária",
+      "total_modules": "3",
+      "total_lessons": "0"
+    },
+    {
+      "id": "2",
+      "title": "Trilha Iniciante",
+      "total_modules": "9",
+      "total_lessons": "9"
+    },
+    {
+      "id": "4",
+      "title": "Trilha Avançada",
+      "total_modules": "0",
+      "total_lessons": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\ttotal_modules\ttotal_lessons\n1\tTrilha Iniciante\t18\t18\n3\tTrilha Intermediária\t3\t0\n2\tTrilha Iniciante\t9\t9\n4\tTrilha Avançada\t0\t0\n",
+  "stderr": "",
+  "execution_time_ms": 362
+}

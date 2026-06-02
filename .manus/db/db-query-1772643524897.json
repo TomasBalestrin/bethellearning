@@ -1,0 +1,154 @@
+{
+  "query": "SELECT \n  c.title as course,\n  COUNT(l.id) as total_aulas,\n  SUM(CASE WHEN l.video_url IS NOT NULL AND l.video_url != '' THEN 1 ELSE 0 END) as com_video,\n  SUM(CASE WHEN CHAR_LENGTH(l.content) > 2000 THEN 1 ELSE 0 END) as expandidas_2k,\n  SUM(CASE WHEN CHAR_LENGTH(l.content) > 3000 THEN 1 ELSE 0 END) as expandidas_3k,\n  ROUND(AVG(CHAR_LENGTH(l.content))) as media_caracteres\nFROM courses c\nLEFT JOIN modules m ON c.id = m.course_id\nLEFT JOIN lessons l ON m.id = l.module_id\nGROUP BY c.id, c.title\nORDER BY c.created_at ASC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT \n  c.title as course,\n  COUNT(l.id) as total_aulas,\n  SUM(CASE WHEN l.video_url IS NOT NULL AND l.video_url != '' THEN 1 ELSE 0 END) as com_video,\n  SUM(CASE WHEN CHAR_LENGTH(l.content) > 2000 THEN 1 ELSE 0 END) as expandidas_2k,\n  SUM(CASE WHEN CHAR_LENGTH(l.content) > 3000 THEN 1 ELSE 0 END) as expandidas_3k,\n  ROUND(AVG(CHAR_LENGTH(l.content))) as media_caracteres\nFROM courses c\nLEFT JOIN modules m ON c.id = m.course_id\nLEFT JOIN lessons l ON m.id = l.module_id\nGROUP BY c.id, c.title\nORDER BY c.created_at ASC;",
+  "rows": [
+    {
+      "course": "Trilha Iniciante",
+      "total_aulas": "18",
+      "com_video": "0",
+      "expandidas_2k": "18",
+      "expandidas_3k": "16",
+      "media_caracteres": "5171"
+    },
+    {
+      "course": "Trilha Iniciante",
+      "total_aulas": "9",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "1044"
+    },
+    {
+      "course": "Trilha Intermediária",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Trilha Avançada",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Test Course",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Test Course",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Test Course",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Test Course",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Test Course",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Test Course",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Test Course",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Test Course",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Test Course",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Test Course",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Test Course",
+      "total_aulas": "0",
+      "com_video": "0",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "NULL"
+    },
+    {
+      "course": "Mobile Development",
+      "total_aulas": "9",
+      "com_video": "9",
+      "expandidas_2k": "9",
+      "expandidas_3k": "8",
+      "media_caracteres": "4405"
+    },
+    {
+      "course": "Segurança & Compliance",
+      "total_aulas": "9",
+      "com_video": "4",
+      "expandidas_2k": "0",
+      "expandidas_3k": "0",
+      "media_caracteres": "230"
+    },
+    {
+      "course": "Cloud & DevOps Avançado",
+      "total_aulas": "9",
+      "com_video": "9",
+      "expandidas_2k": "3",
+      "expandidas_3k": "2",
+      "media_caracteres": "1210"
+    }
+  ],
+  "messages": [],
+  "stdout": "course\ttotal_aulas\tcom_video\texpandidas_2k\texpandidas_3k\tmedia_caracteres\nTrilha Iniciante\t18\t0\t18\t16\t5171\nTrilha Iniciante\t9\t0\t0\t0\t1044\nTrilha Intermediária\t0\t0\t0\t0\tNULL\nTrilha Avançada\t0\t0\t0\t0\tNULL\nTest Course\t0\t0\t0\t0\tNULL\nTest Course\t0\t0\t0\t0\tNULL\nTest Course\t0\t0\t0\t0\tNULL\nTest Course\t0\t0\t0\t0\tNULL\nTest Course\t0\t0\t0\t0\tNULL\nTest Course\t0\t0\t0\t0\tNULL\nTest Course\t0\t0\t0\t0\tNULL\nTest Course\t0\t0\t0\t0\tNULL\nTest Course\t0\t0\t0\t0\tNULL\nTest Course\t0\t0\t0\t0\tNULL\nTest Course\t0\t0\t0\t0\tNULL\nMobile Development\t9\t9\t9\t8\t4405\nSegurança & Compliance\t9\t4\t0\t0\t230\nCloud & DevOps Avançado\t9\t9\t3\t2\t1210\n",
+  "stderr": "",
+  "execution_time_ms": 372
+}

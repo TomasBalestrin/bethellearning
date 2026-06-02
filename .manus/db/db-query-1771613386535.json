@@ -1,0 +1,70 @@
+{
+  "query": "SELECT id, title, module_id FROM lessons WHERE id >= 16 ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT id, title, module_id FROM lessons WHERE id >= 16 ORDER BY id;",
+  "rows": [
+    {
+      "id": "16",
+      "title": "Introdução a Bancos de Dados",
+      "module_id": "6"
+    },
+    {
+      "id": "17",
+      "title": "Queries SQL Básicas",
+      "module_id": "6"
+    },
+    {
+      "id": "18",
+      "title": "JOINs e Relacionamentos",
+      "module_id": "6"
+    },
+    {
+      "id": "19",
+      "title": "Princípios SOLID",
+      "module_id": "7"
+    },
+    {
+      "id": "20",
+      "title": "Design Patterns Criacionais",
+      "module_id": "7"
+    },
+    {
+      "id": "21",
+      "title": "Design Patterns Estruturais",
+      "module_id": "7"
+    },
+    {
+      "id": "22",
+      "title": "Introdução ao Docker",
+      "module_id": "8"
+    },
+    {
+      "id": "23",
+      "title": "Dockerfile e Docker Compose",
+      "module_id": "8"
+    },
+    {
+      "id": "24",
+      "title": "Deploy com Docker",
+      "module_id": "8"
+    },
+    {
+      "id": "25",
+      "title": "Integração Contínua",
+      "module_id": "9"
+    },
+    {
+      "id": "26",
+      "title": "Deploy Contínuo",
+      "module_id": "9"
+    },
+    {
+      "id": "27",
+      "title": "Monitoramento e Logs",
+      "module_id": "9"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tmodule_id\n16\tIntrodução a Bancos de Dados\t6\n17\tQueries SQL Básicas\t6\n18\tJOINs e Relacionamentos\t6\n19\tPrincípios SOLID\t7\n20\tDesign Patterns Criacionais\t7\n21\tDesign Patterns Estruturais\t7\n22\tIntrodução ao Docker\t8\n23\tDockerfile e Docker Compose\t8\n24\tDeploy com Docker\t8\n25\tIntegração Contínua\t9\n26\tDeploy Contínuo\t9\n27\tMonitoramento e Logs\t9\n",
+  "stderr": "",
+  "execution_time_ms": 349
+}

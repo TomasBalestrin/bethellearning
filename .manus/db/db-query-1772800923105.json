@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE lessons l\nJOIN modules m ON l.module_id = m.id\nJOIN courses c ON m.course_id = c.id\nSET l.video_url = 'https://www.youtube.com/embed/PkZNo7MFNFg'\nWHERE c.title LIKE '%Intermediária%' AND l.title LIKE '%Variáveis%'\nLIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute UPDATE lessons l\nJOIN modules m ON l.module_id = m.id\nJOIN courses c ON m.course_id = c.id\nSET l.video_url = 'https://www.youtube.com/embed/PkZNo7MFNFg'\nWHERE c.title LIKE '%Intermediária%' AND l.title LIKE '%Variáveis%'\nLIMIT 1;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 354
+}

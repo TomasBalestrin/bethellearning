@@ -1,0 +1,22 @@
+{
+  "query": "-- Inserir Trilha de Mobile Development\nINSERT INTO courses (title, description) VALUES \n('Mobile Development', 'Aprenda a desenvolver aplicações móveis com React Native e Flutter');\n\nSET @mobile_course_id = LAST_INSERT_ID();\n\n-- Inserir Trilha de Cloud & DevOps\nINSERT INTO courses (title, description) VALUES \n('Cloud & DevOps Avançado', 'Domine AWS, Azure, GCP, Docker, Kubernetes e CI/CD');\n\nSET @cloud_course_id = LAST_INSERT_ID();\n\n-- Inserir Trilha de Segurança\nINSERT INTO courses (title, description) VALUES \n('Segurança & Compliance', 'Aprenda criptografia, autenticação, OWASP e regulamentações');\n\nSET @security_course_id = LAST_INSERT_ID();\n\n-- Verificar IDs criados\nSELECT id, title FROM courses WHERE title IN ('Mobile Development', 'Cloud & DevOps Avançado', 'Segurança & Compliance');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute -- Inserir Trilha de Mobile Development\nINSERT INTO courses (title, description) VALUES \n('Mobile Development', 'Aprenda a desenvolver aplicações móveis com React Native e Flutter');\n\nSET @mobile_course_id = LAST_INSERT_ID();\n\n-- Inserir Trilha de Cloud & DevOps\nINSERT INTO courses (title, description) VALUES \n('Cloud & DevOps Avançado', 'Domine AWS, Azure, GCP, Docker, Kubernetes e CI/CD');\n\nSET @cloud_course_id = LAST_INSERT_ID();\n\n-- Inserir Trilha de Segurança\nINSERT INTO courses (title, description) VALUES \n('Segurança & Compliance', 'Aprenda criptografia, autenticação, OWASP e regulamentações');\n\nSET @security_course_id = LAST_INSERT_ID();\n\n-- Verificar IDs criados\nSELECT id, title FROM courses WHERE title IN ('Mobile Development', 'Cloud & DevOps Avançado', 'Segurança & Compliance');",
+  "rows": [
+    {
+      "id": "120001",
+      "title": "Mobile Development"
+    },
+    {
+      "id": "120002",
+      "title": "Cloud & DevOps Avançado"
+    },
+    {
+      "id": "120003",
+      "title": "Segurança & Compliance"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\n120001\tMobile Development\n120002\tCloud & DevOps Avançado\n120003\tSegurança & Compliance\n",
+  "stderr": "",
+  "execution_time_ms": 684
+}

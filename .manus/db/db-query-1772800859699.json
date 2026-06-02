@@ -1,0 +1,45 @@
+{
+  "query": "SELECT \n  c.title,\n  COUNT(*) as total_aulas,\n  SUM(CASE WHEN video_url IS NULL THEN 1 ELSE 0 END) as null_videos,\n  SUM(CASE WHEN video_url = '' THEN 1 ELSE 0 END) as empty_videos,\n  SUM(CASE WHEN video_url IS NOT NULL AND video_url != '' THEN 1 ELSE 0 END) as com_video\nFROM lessons l\nJOIN modules m ON l.module_id = m.id\nJOIN courses c ON m.course_id = c.id\nGROUP BY c.id, c.title;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT \n  c.title,\n  COUNT(*) as total_aulas,\n  SUM(CASE WHEN video_url IS NULL THEN 1 ELSE 0 END) as null_videos,\n  SUM(CASE WHEN video_url = '' THEN 1 ELSE 0 END) as empty_videos,\n  SUM(CASE WHEN video_url IS NOT NULL AND video_url != '' THEN 1 ELSE 0 END) as com_video\nFROM lessons l\nJOIN modules m ON l.module_id = m.id\nJOIN courses c ON m.course_id = c.id\nGROUP BY c.id, c.title;",
+  "rows": [
+    {
+      "title": "Cloud & DevOps Avançado",
+      "total_aulas": "9",
+      "null_videos": "0",
+      "empty_videos": "0",
+      "com_video": "9"
+    },
+    {
+      "title": "Trilha Iniciante",
+      "total_aulas": "9",
+      "null_videos": "0",
+      "empty_videos": "0",
+      "com_video": "9"
+    },
+    {
+      "title": "Segurança & Compliance",
+      "total_aulas": "9",
+      "null_videos": "0",
+      "empty_videos": "0",
+      "com_video": "9"
+    },
+    {
+      "title": "Trilha Iniciante",
+      "total_aulas": "18",
+      "null_videos": "0",
+      "empty_videos": "0",
+      "com_video": "18"
+    },
+    {
+      "title": "Mobile Development",
+      "total_aulas": "9",
+      "null_videos": "0",
+      "empty_videos": "0",
+      "com_video": "9"
+    }
+  ],
+  "messages": [],
+  "stdout": "title\ttotal_aulas\tnull_videos\tempty_videos\tcom_video\nCloud & DevOps Avançado\t9\t0\t0\t9\nTrilha Iniciante\t9\t0\t0\t9\nSegurança & Compliance\t9\t0\t0\t9\nTrilha Iniciante\t18\t0\t0\t18\nMobile Development\t9\t0\t0\t9\n",
+  "stderr": "",
+  "execution_time_ms": 361
+}

@@ -1,0 +1,55 @@
+{
+  "query": "SELECT l.id, l.title, m.title as module_title \nFROM lessons l \nJOIN modules m ON l.module_id = m.id \nWHERE m.course_id = 2 AND l.id > 12\nORDER BY l.id\nLIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT l.id, l.title, m.title as module_title \nFROM lessons l \nJOIN modules m ON l.module_id = m.id \nWHERE m.course_id = 2 AND l.id > 12\nORDER BY l.id\nLIMIT 10;",
+  "rows": [
+    {
+      "id": "19",
+      "title": "Princípios SOLID",
+      "module_title": "JavaScript Moderno"
+    },
+    {
+      "id": "20",
+      "title": "Design Patterns Criacionais",
+      "module_title": "JavaScript Moderno"
+    },
+    {
+      "id": "21",
+      "title": "Design Patterns Estruturais",
+      "module_title": "JavaScript Moderno"
+    },
+    {
+      "id": "22",
+      "title": "Introdução ao Docker",
+      "module_title": "React Fundamentos"
+    },
+    {
+      "id": "23",
+      "title": "Dockerfile e Docker Compose",
+      "module_title": "React Fundamentos"
+    },
+    {
+      "id": "24",
+      "title": "Deploy com Docker",
+      "module_title": "React Fundamentos"
+    },
+    {
+      "id": "25",
+      "title": "Integração Contínua",
+      "module_title": "Bancos de Dados SQL"
+    },
+    {
+      "id": "26",
+      "title": "Deploy Contínuo",
+      "module_title": "Bancos de Dados SQL"
+    },
+    {
+      "id": "27",
+      "title": "Monitoramento e Logs",
+      "module_title": "Bancos de Dados SQL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tmodule_title\n19\tPrincípios SOLID\tJavaScript Moderno\n20\tDesign Patterns Criacionais\tJavaScript Moderno\n21\tDesign Patterns Estruturais\tJavaScript Moderno\n22\tIntrodução ao Docker\tReact Fundamentos\n23\tDockerfile e Docker Compose\tReact Fundamentos\n24\tDeploy com Docker\tReact Fundamentos\n25\tIntegração Contínua\tBancos de Dados SQL\n26\tDeploy Contínuo\tBancos de Dados SQL\n27\tMonitoramento e Logs\tBancos de Dados SQL\n",
+  "stderr": "",
+  "execution_time_ms": 348
+}

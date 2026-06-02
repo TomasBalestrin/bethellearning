@@ -1,0 +1,8 @@
+{
+  "query": "INSERT INTO badges (name, description, icon) VALUES\n('Streak de 7 Dias', 'Complete aulas por 7 dias consecutivos', '🔥'),\n('Streak de 30 Dias', 'Complete aulas por 30 dias consecutivos', '🔥🔥'),\n('Streak de 100 Dias', 'Complete aulas por 100 dias consecutivos', '🔥🔥🔥');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute INSERT INTO badges (name, description, icon) VALUES\n('Streak de 7 Dias', 'Complete aulas por 7 dias consecutivos', '🔥'),\n('Streak de 30 Dias', 'Complete aulas por 30 dias consecutivos', '🔥🔥'),\n('Streak de 100 Dias', 'Complete aulas por 100 dias consecutivos', '🔥🔥🔥');",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1364 (HY000) at line 1: Field 'requirement_type' doesn't have a default value"
+  ]
+}

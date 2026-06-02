@@ -1,0 +1,70 @@
+{
+  "query": "SELECT l.id, l.title, l.video_url, CHAR_LENGTH(l.content) as content_length\nFROM lessons l\nWHERE l.video_url IS NOT NULL AND l.video_url != ''\nLIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute SELECT l.id, l.title, l.video_url, CHAR_LENGTH(l.content) as content_length\nFROM lessons l\nWHERE l.video_url IS NOT NULL AND l.video_url != ''\nLIMIT 10;",
+  "rows": [
+    {
+      "id": "120001",
+      "title": "Diferenças Web vs Mobile",
+      "video_url": "https://www.youtube.com/embed/0kL6nhQM6qc",
+      "content_length": "2609"
+    },
+    {
+      "id": "120002",
+      "title": "Escolhendo o Framework Certo",
+      "video_url": "https://www.youtube.com/embed/fvkavBfsWEA",
+      "content_length": "3640"
+    },
+    {
+      "id": "120003",
+      "title": "Setup do Ambiente de Desenvolvimento",
+      "video_url": "https://www.youtube.com/embed/1DYwgtLyNV8",
+      "content_length": "3658"
+    },
+    {
+      "id": "120004",
+      "title": "React Native Básico",
+      "video_url": "https://www.youtube.com/embed/7yEKacuKVfI",
+      "content_length": "4577"
+    },
+    {
+      "id": "120005",
+      "title": "Navegação em React Native",
+      "video_url": "https://www.youtube.com/embed/ILowrYq2sdU",
+      "content_length": "4760"
+    },
+    {
+      "id": "120006",
+      "title": "Hooks e State Management",
+      "video_url": "https://www.youtube.com/embed/O6P86XQ5kQ4",
+      "content_length": "5101"
+    },
+    {
+      "id": "120007",
+      "title": "Dart Fundamentos",
+      "video_url": "https://www.youtube.com/embed/W6NZfCO5tTE",
+      "content_length": "4605"
+    },
+    {
+      "id": "120008",
+      "title": "Widgets e UI em Flutter",
+      "video_url": "https://www.youtube.com/embed/jBBl1RzoWDo",
+      "content_length": "4770"
+    },
+    {
+      "id": "120009",
+      "title": "State Management em Flutter",
+      "video_url": "https://www.youtube.com/embed/Srf5S_Iicho",
+      "content_length": "5925"
+    },
+    {
+      "id": "120010",
+      "title": "Modelos de Cloud",
+      "video_url": "https://www.youtube.com/embed/8KmqmKj2nQI",
+      "content_length": "305"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tvideo_url\tcontent_length\n120001\tDiferenças Web vs Mobile\thttps://www.youtube.com/embed/0kL6nhQM6qc\t2609\n120002\tEscolhendo o Framework Certo\thttps://www.youtube.com/embed/fvkavBfsWEA\t3640\n120003\tSetup do Ambiente de Desenvolvimento\thttps://www.youtube.com/embed/1DYwgtLyNV8\t3658\n120004\tReact Native Básico\thttps://www.youtube.com/embed/7yEKacuKVfI\t4577\n120005\tNavegação em React Native\thttps://www.youtube.com/embed/ILowrYq2sdU\t4760\n120006\tHooks e State Management\thttps://www.youtube.com/embed/O6P86XQ5kQ4\t5101\n120007\tDart Fundamentos\thttps://www.youtube.com/embed/W6NZfCO5tTE\t4605\n120008\tWidgets e UI em Flutter\thttps://www.youtube.com/embed/jBBl1RzoWDo\t4770\n120009\tState Management em Flutter\thttps://www.youtube.com/embed/Srf5S_Iicho\t5925\n120010\tModelos de Cloud\thttps://www.youtube.com/embed/8KmqmKj2nQI\t305\n",
+  "stderr": "",
+  "execution_time_ms": 551
+}

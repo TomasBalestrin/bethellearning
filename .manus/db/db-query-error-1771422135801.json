@@ -1,0 +1,8 @@
+{
+  "query": "\nINSERT INTO badges (name, description, icon, requirement_type, requirement_value, xp_reward) VALUES\n('Primeira Aula', 'Complete sua primeira aula', '🎓', 'lessons_completed', 1, 50),\n('Iniciante Dedicado', 'Complete 10 aulas', '📚', 'lessons_completed', 10, 100),\n('Estudante Avançado', 'Complete 25 aulas', '🏆', 'lessons_completed', 25, 250),\n('Mestre do Conhecimento', 'Complete todas as 27 aulas', '👑', 'lessons_completed', 27, 500),\n('Primeiros Passos', 'Ganhe 100 XP', '⭐', 'xp_earned', 100, 0),\n('Em Ascensão', 'Ganhe 500 XP', '🌟', 'xp_earned', 500, 0),\n('Veterano', 'Ganhe 1000 XP', '💫', 'xp_earned', 1000, 0),\n('Lenda', 'Ganhe 2500 XP', '✨', 'xp_earned', 2500, 0);\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user U12DfRhAFBW6sMR.root --database LDLtnU3Ggjm84uQbZLmZ7C --execute \nINSERT INTO badges (name, description, icon, requirement_type, requirement_value, xp_reward) VALUES\n('Primeira Aula', 'Complete sua primeira aula', '🎓', 'lessons_completed', 1, 50),\n('Iniciante Dedicado', 'Complete 10 aulas', '📚', 'lessons_completed', 10, 100),\n('Estudante Avançado', 'Complete 25 aulas', '🏆', 'lessons_completed', 25, 250),\n('Mestre do Conhecimento', 'Complete todas as 27 aulas', '👑', 'lessons_completed', 27, 500),\n('Primeiros Passos', 'Ganhe 100 XP', '⭐', 'xp_earned', 100, 0),\n('Em Ascensão', 'Ganhe 500 XP', '🌟', 'xp_earned', 500, 0),\n('Veterano', 'Ganhe 1000 XP', '💫', 'xp_earned', 1000, 0),\n('Lenda', 'Ganhe 2500 XP', '✨', 'xp_earned', 2500, 0);\n",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 2: Unknown column 'name' in 'field list'"
+  ]
+}
