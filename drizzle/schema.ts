@@ -1,125 +1,121 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { integer, pgTable, text, timestamp, varchar, pgEnum, serial, unique } from "drizzle-orm/pg-core";
 
-/**
- * Core user table backing auth flow.
- * Extend this file with additional tables as your product grows.
- * Columns use camelCase to match both database fields and generated types.
- */
-export const users = mysqlTable("users", {
-  /**
-   * Surrogate primary key. Auto-incremented numeric value managed by the database.
-   * Use this for relations between tables.
-   */
-  id: int("id").autoincrement().primaryKey(),
-  /** Manus OAuth identifier (openId) returned from the OAuth callback. Unique per user. */
+export const roleEnum = pgEnum("role", ["user", "admin"]);
+export const difficultyEnum = pgEnum("difficulty", ["beginner", "intermediate", "advanced"]);
+
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
   openId: varchar("openId", { length: 64 }).notNull().unique(),
   name: text("name"),
   email: varchar("email", { length: 320 }),
   password: varchar("password", { length: 255 }),
   loginMethod: varchar("loginMethod", { length: 64 }),
-  role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
+  role: roleEnum("role").default("user").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().$onUpdate(() => new Date()).notNull(),
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
 });
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-// Courses and Learning Content
-export const courses = mysqlTable("courses", {
-  id: int("id").autoincrement().primaryKey(),
+export const courses = pgTable("courses", {
+  id: serial("id").primaryKey(),
   title: varchar("title", { length: 255 }).notNull(),
   description: text("description"),
   thumbnail: varchar("thumbnail", { length: 500 }),
-  difficulty: mysqlEnum("difficulty", ["beginner", "intermediate", "advanced"]).default("beginner").notNull(),
-  duration: int("duration"), // em minutos
-  order: int("order").default(0).notNull(),
-  isPublished: int("is_published").default(0).notNull(), // 0 = draft, 1 = published
+  difficulty: difficultyEnum("difficulty").default("beginner").notNull(),
+  duration: integer("duration"),
+  order: integer("order").default(0).notNull(),
+  isPublished: integer("is_published").default(0).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().$onUpdate(() => new Date()).notNull(),
 });
 
 export type Course = typeof courses.$inferSelect;
 export type InsertCourse = typeof courses.$inferInsert;
 
-export const modules = mysqlTable("modules", {
-  id: int("id").autoincrement().primaryKey(),
-  courseId: int("course_id").notNull(),
+export const modules = pgTable("modules", {
+  id: serial("id").primaryKey(),
+  courseId: integer("course_id").notNull(),
   title: varchar("title", { length: 255 }).notNull(),
   description: text("description"),
-  order: int("order").default(0).notNull(),
+  order: integer("order").default(0).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().$onUpdate(() => new Date()).notNull(),
 });
 
 export type Module = typeof modules.$inferSelect;
 export type InsertModule = typeof modules.$inferInsert;
 
-export const lessons = mysqlTable("lessons", {
-  id: int("id").autoincrement().primaryKey(),
-  moduleId: int("module_id").notNull(),
+export const lessons = pgTable("lessons", {
+  id: serial("id").primaryKey(),
+  moduleId: integer("module_id").notNull(),
   title: varchar("title", { length: 255 }).notNull(),
-  content: text("content"), // Markdown ou HTML
+  content: text("content"),
   videoUrl: varchar("video_url", { length: 500 }),
-  duration: int("duration"), // em minutos
-  order: int("order").default(0).notNull(),
+  duration: integer("duration"),
+  order: integer("order").default(0).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().$onUpdate(() => new Date()).notNull(),
 });
 
 export type Lesson = typeof lessons.$inferSelect;
 export type InsertLesson = typeof lessons.$inferInsert;
 
-export const userProgress = mysqlTable("user_progress", {
-  id: int("id").autoincrement().primaryKey(),
-  userId: int("user_id").notNull(),
-  lessonId: int("lesson_id").notNull(),
-  completed: int("completed").default(0).notNull(), // 0 = not completed, 1 = completed
+export const userProgress = pgTable("user_progress", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull(),
+  lessonId: integer("lesson_id").notNull(),
+  completed: integer("completed").default(0).notNull(),
   completedAt: timestamp("completed_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
-});
+  updatedAt: timestamp("updated_at").defaultNow().$onUpdate(() => new Date()).notNull(),
+}, (t) => ({
+  unq: unique().on(t.userId, t.lessonId)
+}));
 
 export type UserProgress = typeof userProgress.$inferSelect;
 export type InsertUserProgress = typeof userProgress.$inferInsert;
-// Gamification and Stats
-export const userStats = mysqlTable("user_stats", {
-  id: int("id").autoincrement().primaryKey(),
-  userId: int("user_id").notNull().unique(),
-  totalXp: int("total_xp").default(0).notNull(),
-  currentLevel: int("current_level").default(1).notNull(),
-  lessonsCompleted: int("lessons_completed").default(0).notNull(),
-  currentStreak: int("current_streak").default(0).notNull(), // dias consecutivos atuais
-  longestStreak: int("longest_streak").default(0).notNull(), // recorde de dias consecutivos
-  lastActivityDate: timestamp("last_activity_date"), // última data de atividade (YYYY-MM-DD)
+
+export const userStats = pgTable("user_stats", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull().unique(),
+  totalXp: integer("total_xp").default(0).notNull(),
+  currentLevel: integer("current_level").default(1).notNull(),
+  lessonsCompleted: integer("lessons_completed").default(0).notNull(),
+  currentStreak: integer("current_streak").default(0).notNull(),
+  longestStreak: integer("longest_streak").default(0).notNull(),
+  lastActivityDate: timestamp("last_activity_date", { mode: 'date' }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().$onUpdate(() => new Date()).notNull(),
 });
 
 export type UserStats = typeof userStats.$inferSelect;
 export type InsertUserStats = typeof userStats.$inferInsert;
 
-export const badges = mysqlTable("badges", {
-  id: int("id").autoincrement().primaryKey(),
+export const badges = pgTable("badges", {
+  id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
   description: text("description"),
-  icon: varchar("icon", { length: 100 }), // emoji ou nome do ícone
-  requirement: text("requirement"), // descrição do requisito
-  requirementType: varchar("requirement_type", { length: 50 }), // xp, lessons, streak, etc
-  requirementValue: int("requirement_value"), // valor necessário
+  icon: varchar("icon", { length: 100 }),
+  requirement: text("requirement"),
+  requirementType: varchar("requirement_type", { length: 50 }),
+  requirementValue: integer("requirement_value"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export type Badge = typeof badges.$inferSelect;
 export type InsertBadge = typeof badges.$inferInsert;
 
-export const userBadges = mysqlTable("user_badges", {
-  id: int("id").autoincrement().primaryKey(),
-  userId: int("user_id").notNull(),
-  badgeId: int("badge_id").notNull(),
+export const userBadges = pgTable("user_badges", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull(),
+  badgeId: integer("badge_id").notNull(),
   unlockedAt: timestamp("unlocked_at").defaultNow().notNull(),
-});
+}, (t) => ({
+  unq: unique().on(t.userId, t.badgeId)
+}));
 
 export type UserBadge = typeof userBadges.$inferSelect;
 export type InsertUserBadge = typeof userBadges.$inferInsert;

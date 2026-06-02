@@ -1,16 +1,19 @@
 import { eq } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/mysql2";
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
 import { sql } from "drizzle-orm";
 import { InsertUser, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
+let client: ReturnType<typeof postgres> | null = null;
 
 // Lazily create the drizzle instance so local tooling can run without a DB.
 export async function getDb() {
   if (!_db && process.env.DATABASE_URL) {
     try {
-      _db = drizzle(process.env.DATABASE_URL);
+      client = postgres(process.env.DATABASE_URL, { prepare: false });
+      _db = drizzle(client);
     } catch (error) {
       console.warn("[Database] Failed to connect:", error);
       _db = null;
@@ -69,7 +72,8 @@ export async function upsertUser(user: InsertUser): Promise<void> {
       updateSet.lastSignedIn = new Date();
     }
 
-    await db.insert(users).values(values).onDuplicateKeyUpdate({
+    await db.insert(users).values(values).onConflictDoUpdate({
+      target: users.openId,
       set: updateSet,
     });
   } catch (error) {
@@ -89,8 +93,6 @@ export async function getUserByOpenId(openId: string) {
 
   return result.length > 0 ? result[0] : undefined;
 }
-
-// TODO: add feature queries here as your schema grows.
 
 // Authentication helpers
 export async function getUserByEmail(email: string) {
@@ -205,9 +207,9 @@ export async function createCourse(data: { title: string; description?: string; 
     duration: data.duration || null,
     order: data.order || 0,
     isPublished: 0,
-  });
+  }).returning({ id: courses.id });
 
-  return getCourseById(Number(result[0].insertId));
+  return getCourseById(result[0].id);
 }
 
 export async function updateCourse(id: number, data: Partial<{ title: string; description: string; thumbnail: string; difficulty: 'beginner' | 'intermediate' | 'advanced'; duration: number; order: number; isPublished: number }>) {
@@ -266,9 +268,9 @@ export async function createModule(data: { courseId: number; title: string; desc
     title: data.title,
     description: data.description || null,
     order: data.order || 0,
-  });
+  }).returning({ id: modules.id });
 
-  return getModuleById(Number(result[0].insertId));
+  return getModuleById(result[0].id);
 }
 
 export async function updateModule(id: number, data: Partial<{ title: string; description: string; order: number }>) {
@@ -329,9 +331,9 @@ export async function createLesson(data: { moduleId: number; title: string; cont
     videoUrl: data.videoUrl || null,
     duration: data.duration || null,
     order: data.order || 0,
-  });
+  }).returning({ id: lessons.id });
 
-  return getLessonById(Number(result[0].insertId));
+  return getLessonById(result[0].id);
 }
 
 export async function updateLesson(id: number, data: Partial<{ title: string; content: string; videoUrl: string; duration: number; order: number }>) {
@@ -365,7 +367,7 @@ export async function completeLesson(userId: number, lessonId: number) {
   const result = await db.execute(sql`
     INSERT INTO user_progress (user_id, lesson_id, completed_at)
     VALUES (${userId}, ${lessonId}, NOW())
-    ON DUPLICATE KEY UPDATE completed_at = NOW()
+    ON CONFLICT (user_id, lesson_id) DO UPDATE SET completed_at = NOW()
   `);
   
   return result;
@@ -375,22 +377,22 @@ export async function getUserProgress(userId: number) {
   const db = await getDb();
   if (!db) return [];
   
-  const [rows] = await db.execute(sql`
+  const rows = await db.execute(sql`
     SELECT * FROM user_progress WHERE user_id = ${userId}
   `);
   
-  return rows as unknown as any[];
+  return rows as any[];
 }
 
 export async function getUserStats(userId: number) {
   const db = await getDb();
   if (!db) return null;
   
-  const [rows] = await db.execute(sql`
+  const rows = await db.execute(sql`
     SELECT * FROM user_stats WHERE user_id = ${userId} LIMIT 1
   `);
   
-  return (rows as unknown as any[])[0] || null;
+  return (rows as any[])[0] || null;
 }
 
 export async function initializeUserStats(userId: number) {
@@ -398,8 +400,9 @@ export async function initializeUserStats(userId: number) {
   if (!db) throw new Error("Database not available");
   
   await db.execute(sql`
-    INSERT IGNORE INTO user_stats (user_id, total_xp, current_level, lessons_completed)
+    INSERT INTO user_stats (user_id, total_xp, current_level, lessons_completed)
     VALUES (${userId}, 0, 1, 0)
+    ON CONFLICT (user_id) DO NOTHING
   `);
 }
 
@@ -411,7 +414,7 @@ export async function addXP(userId: number, xpAmount: number) {
     UPDATE user_stats 
     SET total_xp = total_xp + ${xpAmount},
         current_level = FLOOR(1 + (total_xp + ${xpAmount}) / 250),
-        last_activity_date = CURDATE()
+        last_activity_date = CURRENT_DATE
     WHERE user_id = ${userId}
   `);
 }
@@ -423,7 +426,7 @@ export async function incrementLessonsCompleted(userId: number) {
   await db.execute(sql`
     UPDATE user_stats 
     SET lessons_completed = lessons_completed + 1,
-        last_activity_date = CURDATE()
+        last_activity_date = CURRENT_DATE
     WHERE user_id = ${userId}
   `);
 }
@@ -447,11 +450,12 @@ export async function checkAndUpdateStreak(userId: number) {
     // Primeira atividade do usuário
     newStreak = 1;
   } else {
-    // Usar DATEDIFF do MySQL para cálculo preciso de diferença de dias
-    const [diffResult] = await db.execute(sql`
-      SELECT DATEDIFF(CURDATE(), ${stats.last_activity_date}) as diff_days
+    // Usar diferença no Postgres
+    const diffResult = await db.execute(sql`
+      SELECT CURRENT_DATE - last_activity_date::date as diff_days
+      FROM user_stats WHERE user_id = ${userId}
     `);
-    const diffDays = (diffResult as unknown as any[])[0]?.diff_days || 0;
+    const diffDays = Number((diffResult as any[])[0]?.diff_days || 0);
     
     if (diffDays === 0) {
       // Mesma data, mantém streak (mas garante mínimo de 1)
@@ -475,7 +479,7 @@ export async function checkAndUpdateStreak(userId: number) {
     UPDATE user_stats 
     SET current_streak = ${newStreak},
         longest_streak = ${newLongestStreak},
-        last_activity_date = CURDATE()
+        last_activity_date = CURRENT_DATE
     WHERE user_id = ${userId}
   `);
   
@@ -486,23 +490,23 @@ export async function getAllBadges() {
   const db = await getDb();
   if (!db) return [];
   
-  const [rows] = await db.execute(sql`SELECT * FROM badges`);
-  return rows as unknown as any[];
+  const rows = await db.execute(sql`SELECT * FROM badges`);
+  return rows as any[];
 }
 
 export async function getUserBadges(userId: number) {
   const db = await getDb();
   if (!db) return [];
   
-  const [rows] = await db.execute(sql`
-    SELECT b.*, ub.earned_at 
+  const rows = await db.execute(sql`
+    SELECT b.*, ub.unlocked_at as earned_at
     FROM user_badges ub
     JOIN badges b ON ub.badge_id = b.id
     WHERE ub.user_id = ${userId}
-    ORDER BY ub.earned_at DESC
+    ORDER BY ub.unlocked_at DESC
   `);
   
-  return rows as unknown as any[];
+  return rows as any[];
 }
 
 export async function awardBadge(userId: number, badgeId: number) {
@@ -510,8 +514,9 @@ export async function awardBadge(userId: number, badgeId: number) {
   if (!db) throw new Error("Database not available");
   
   await db.execute(sql`
-    INSERT IGNORE INTO user_badges (user_id, badge_id)
-    VALUES (${userId}, ${badgeId})
+    INSERT INTO user_badges (user_id, badge_id, unlocked_at)
+    VALUES (${userId}, ${badgeId}, NOW())
+    ON CONFLICT (user_id, badge_id) DO NOTHING
   `);
 }
 
@@ -554,7 +559,7 @@ export async function getLeaderboard(limit: number = 10) {
   const db = await getDb();
   if (!db) return [];
   
-  const [rows] = await db.execute(sql`
+  const rows = await db.execute(sql`
     SELECT u.id, u.name, u.email, s.total_xp, s.current_level, s.lessons_completed
     FROM user_stats s
     JOIN users u ON s.user_id = u.id
@@ -562,7 +567,7 @@ export async function getLeaderboard(limit: number = 10) {
     LIMIT ${limit}
   `);
   
-  return rows as unknown as any[];
+  return rows as any[];
 }
 
 export async function getCourseProgress(userId: number, courseId: number) {
@@ -570,23 +575,23 @@ export async function getCourseProgress(userId: number, courseId: number) {
   if (!db) return null;
   
   // Get total lessons in course
-  const [totalRows] = await db.execute(sql`
+  const totalRows = await db.execute(sql`
     SELECT COUNT(*) as total
     FROM lessons l
     JOIN modules m ON l.module_id = m.id
     WHERE m.course_id = ${courseId}
   `);
-  const total = (totalRows as unknown as any[])[0]?.total || 0;
+  const total = Number((totalRows as any[])[0]?.total || 0);
   
   // Get completed lessons in course
-  const [completedRows] = await db.execute(sql`
+  const completedRows = await db.execute(sql`
     SELECT COUNT(*) as completed
     FROM user_progress up
     JOIN lessons l ON up.lesson_id = l.id
     JOIN modules m ON l.module_id = m.id
     WHERE up.user_id = ${userId} AND m.course_id = ${courseId} AND up.completed = 1
   `);
-  const completed = (completedRows as unknown as any[])[0]?.completed || 0;
+  const completed = Number((completedRows as any[])[0]?.completed || 0);
   
   return {
     total,
@@ -599,12 +604,12 @@ export async function getUserRank(userId: number) {
   const db = await getDb();
   if (!db) return null;
   
-  const [rows] = await db.execute(sql`
+  const rows = await db.execute(sql`
     SELECT COUNT(*) + 1 as rank
     FROM user_stats s1
     JOIN user_stats s2 ON s2.user_id = ${userId}
     WHERE s1.total_xp > s2.total_xp
   `);
   
-  return (rows as unknown as any[])[0]?.rank || null;
+  return Number((rows as any[])[0]?.rank || null);
 }
